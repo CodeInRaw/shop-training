@@ -1,24 +1,44 @@
 package no.itera.shop.actions;
 
+import no.itera.shop.domain.Product;
+
 /**
  * Created by oleksandr.cherniaiev on 28-Sep-16.
  */
 public class ProductDetails implements Action {
+    private Product product;
+
+    public ProductDetails(Product product) {
+        this.product = product;
+    }
+
     @Override
     public void showPrompt() {
-        System.out.println("Product details\n\n" +
-                "1. Return to Main Menu\n" +
-                "2. Exit");
+        System.out.println("*** " + product.getName() + " ***");
+        System.out.println("Manufacturer: " + product.getManufacturer().getName());
+        System.out.println("Price: $" + product.getPrice());
+        System.out.println("Products in store: " + product.getQuantity());
+        System.out.println();
+        System.out.println(product.getDescription());
+
+        System.out.println("\n" +
+                "1. Buy Product\n" +
+                "2. View manufacturer details\n" +
+                "3. Return to the list of products\n" +
+                "4. Return to main menu");
     }
 
     @Override
     public Action perform(int i) {
         switch (i) {
             case 1:
-                return new MainMenu();
+                return new BuyConfirmation(product);
             case 2:
-                System.out.println("Bye bye!");
-                System.exit(0);
+                return new ManufacturerDetails(product.getManufacturer());
+            case 3:
+                return new ProductList();
+            case 4:
+                return new MainMenu();
             default:
                 return this;
         }

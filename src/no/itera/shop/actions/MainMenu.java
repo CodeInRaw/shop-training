@@ -20,7 +20,7 @@ public class MainMenu implements Action {
             case 1:
                 return new ProductList();
             case 2:
-                return new ManfacturerList();
+                return new ManufacturerList();
             case 3:
                 return new AccountDetails();
             case 4:
