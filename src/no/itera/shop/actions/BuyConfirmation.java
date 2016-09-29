@@ -33,6 +33,7 @@ public class BuyConfirmation implements Action {
 
                 Model.getInstance().setBalance(Model.getInstance().getBalance() - product.getPrice());
                 Model.getInstance().getProductsPurchased().add(product.getName());
+                product.setQuantity(product.getQuantity() - 1);
                 System.out.println(product.getName() + " is purchased.\n");
                 return new AccountDetails();
             case 2:
