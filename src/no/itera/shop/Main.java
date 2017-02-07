@@ -3,6 +3,7 @@ package no.itera.shop;
 import no.itera.shop.actions.Action;
 import no.itera.shop.actions.MainMenu;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -17,6 +18,9 @@ public class Main {
                 currentAction.showPrompt();
                 Integer choice = scanner.nextInt();
                 currentAction = currentAction.perform(choice);
+                System.out.println();
+            } catch (InputMismatchException e) {
+                scanner.next();
                 System.out.println();
             } catch (Exception e) {
                 continue;
